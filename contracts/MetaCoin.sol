@@ -1,6 +1,6 @@
 pragma solidity >=0.4.21 <0.6.0;
 
-import "./ConvertLib.sol";
+/*import "./ConvertLib.sol";*/
 
 // This is a simple example of a coin-like contract.
 // It is not standards compatible and cannot be expected to talk to other
@@ -24,9 +24,9 @@ contract Jukebox {
         return true;
     }
 
-    function getBalanceInEth(address addr) public view returns(uint) {
+/*    function getBalanceInEth(address addr) public view returns(uint) {
         return ConvertLib.convert(getBalance(addr),2);
-    }
+    }*/
 
     function getBalance(address addr) public view returns(uint) {
         return balances[addr];
