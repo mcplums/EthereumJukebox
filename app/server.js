@@ -6,7 +6,7 @@ const providerUrl = 'ws://localhost:8545' // requires # https://github.com/truff
 const provider = new Web3.providers.WebsocketProvider(providerUrl)
 web3.setProvider(provider)
 
-web3.eth.net.getId()
+/*web3.eth.net.getId()
   .then(networkId => {
     const contractAddr = contractArtifact.networks[networkId].address
     const Jukebox = new web3.eth.Contract(contractArtifact.abi, contractAddr)
@@ -25,36 +25,24 @@ web3.eth.net.getId()
       .on('error', (log) => {
         console.log(`error:  ${log}`)
       })
+  })*/
+
+web3.eth.net.getId()
+  .then(networkId => {
+    const contractAddr = contractArtifact.networks[networkId].address
+    const Jukebox = new web3.eth.Contract(contractArtifact.abi, contractAddr)
+    Jukebox.events.quarterEntered({fromBlock: 0},  function(error, event){ console.log(error) })
+      .on('data', (log) => {
+        let { returnValues: { _ethReceived, _url }, blockNumber } = log
+        console.log(`----BlockNumber (${blockNumber})----`)
+        console.log(`URL = ${_url}`)
+        console.log(`value = ${_ethReceived}`)
+        console.log(`----BlockNumber (${blockNumber})----`)
+      })
+      .on('changed', (log) => {
+        console.log(`Changed: ${log}`)
+      })
+      .on('error', (log) => {
+        console.log(`error:  ${log}`)
+      })
   })
-
-/*var jukebox_artifacts = require('../build/contracts/Jukebox.json')
-var Web3 = require('web3')
-var contract = require('truffle-contract')
-
-var provider = new Web3.providers.HttpProvider("http://localhost:8545");
-
-const providerUrl = 'ws://localhost:8545'
-var Jukebox = contract(jukebox_artifacts);
-Jukebox.setProvider(provider);
-
-EventListener();
-
-function EventListener() {
-//console.log("starting User Review Event Listener");
-console.log(Jukebox);
-  var jukeboxEvent;
-  Jukebox.deployed().then(function(i) {
-    jukeboxEvent = i.Transfer({fromBlock: 0, toBlock: 'latest'})
-    jukeboxEvent.watch(function(err, result) {
-      if (err) {
-        console.log(err)
-        return;
-      }
-      console.log(result.args);
-
-    });
-  });
-}
-
-
-*/

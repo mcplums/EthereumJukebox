@@ -36,6 +36,22 @@ const App = {
     balanceElement.innerHTML = balance;
   },
 
+    insertQuarter: async function() {
+    const amount = parseInt(document.getElementById("amount").value) * 1000000000000000000;
+    const url = document.getElementById("url").value;
+
+    this.setStatus("Initiating transaction... (please wait)");
+
+    const { insertQuarter } = this.meta.methods;
+    await insertQuarter(url).send({ 
+      from: this.account, 
+        value: amount
+      });
+
+    this.setStatus("Transaction complete!");
+    this.refreshBalance();
+  },
+
   sendCoin: async function() {
     const amount = parseInt(document.getElementById("amount").value);
     const receiver = document.getElementById("receiver").value;

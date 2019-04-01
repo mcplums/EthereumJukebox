@@ -11,6 +11,8 @@ contract Jukebox {
 
     event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
+    event quarterEntered(uint _ethReceived, string _url );
+
     constructor() public {
         balances[msg.sender] = 10000;
     }
@@ -25,4 +27,8 @@ contract Jukebox {
     function getBalance(address addr) public view returns(uint) {
         return balances[addr];
     }
+
+    function insertQuarter(string memory _url) public payable {
+    emit quarterEntered(msg.value, _url);
+} 
 }

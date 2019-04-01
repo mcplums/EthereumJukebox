@@ -15,7 +15,7 @@
 
     <h1>Send MetaCoin</h1>
 
-    <label for="amount">Amount:</label>
+<!--     <label for="amount">Amount:</label>
     <input type="text" id="amount" placeholder="e.g. 95" />
 
     <label for="receiver">To address:</label>
@@ -23,9 +23,15 @@
       type="text"
       id="receiver"
       placeholder="e.g. 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
-    />
+    /> -->
 
-    <button onclick="App.sendCoin()">Send MetaCoin</button>
+    <label for="url">URL:</label>
+    <input type="text" id="url" placeholder="Darude" />
+
+    <label for="amount">Amount for Jukebox:</label>
+    <input type="text" id="amount" placeholder="e.g. 1" />
+
+    <button onclick="App.insertQuarter()">Insert Quarter</button>
 
     <p id="status"></p>
     <p>
