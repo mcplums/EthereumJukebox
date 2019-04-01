@@ -6,27 +6,6 @@ const providerUrl = 'ws://localhost:8545' // requires # https://github.com/truff
 const provider = new Web3.providers.WebsocketProvider(providerUrl)
 web3.setProvider(provider)
 
-/*web3.eth.net.getId()
-  .then(networkId => {
-    const contractAddr = contractArtifact.networks[networkId].address
-    const Jukebox = new web3.eth.Contract(contractArtifact.abi, contractAddr)
-    Jukebox.events.Transfer({fromBlock: 0},  function(error, event){ console.log(error) })
-      .on('data', (log) => {
-        let { returnValues: { _from, _to, _value }, blockNumber } = log
-        console.log(`----BlockNumber (${blockNumber})----`)
-        console.log(`from = ${_from}`)
-        console.log(`to = ${_to}`)
-        console.log(`value = ${_value}`)
-        console.log(`----BlockNumber (${blockNumber})----`)
-      })
-      .on('changed', (log) => {
-        console.log(`Changed: ${log}`)
-      })
-      .on('error', (log) => {
-        console.log(`error:  ${log}`)
-      })
-  })*/
-
 web3.eth.net.getId()
   .then(networkId => {
     const contractAddr = contractArtifact.networks[networkId].address
