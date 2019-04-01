@@ -28,14 +28,6 @@ const App = {
     }
   },
 
-  refreshBalance: async function() {
-    const { getBalance } = this.meta.methods;
-    const balance = await getBalance(this.account).call();
-
-    const balanceElement = document.getElementsByClassName("balance")[0];
-    balanceElement.innerHTML = balance;
-  },
-
     insertQuarter: async function() {
     const amount = parseInt(document.getElementById("amount").value) * 1000000000000000000;
     const url = document.getElementById("url").value;
@@ -48,21 +40,7 @@ const App = {
         value: amount
       });
 
-    this.setStatus("Transaction complete!");
-    this.refreshBalance();
-  },
-
-  sendCoin: async function() {
-    const amount = parseInt(document.getElementById("amount").value);
-    const receiver = document.getElementById("receiver").value;
-
-    this.setStatus("Initiating transaction... (please wait)");
-
-    const { sendCoin } = this.meta.methods;
-    await sendCoin(receiver, amount).send({ from: this.account });
-
-    this.setStatus("Transaction complete!");
-    this.refreshBalance();
+    this.setStatus("Quarter entered!");
   },
 
   setStatus: function(message) {

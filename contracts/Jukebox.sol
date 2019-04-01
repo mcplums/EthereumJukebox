@@ -7,26 +7,9 @@ pragma solidity >=0.4.21 <0.6.0;
 // token, see: https://github.com/ConsenSys/Tokens. Cheers!
 
 contract Jukebox {
-    mapping (address => uint) balances;
 
-    event Transfer(address indexed _from, address indexed _to, uint256 _value);
+   event quarterEntered(uint _ethReceived, string _url );
 
-    event quarterEntered(uint _ethReceived, string _url );
-
-    constructor() public {
-        balances[msg.sender] = 10000;
-    }
-
-    function sendCoin(address receiver, uint amount) public returns(bool sufficient) {
-        if (balances[msg.sender] < amount) return false;
-        balances[msg.sender] -= amount;
-        balances[receiver] += amount;
-        emit Transfer(msg.sender, receiver, amount);
-        return true;
-    }
-    function getBalance(address addr) public view returns(uint) {
-        return balances[addr];
-    }
 
     function insertQuarter(string memory _url) public payable {
     emit quarterEntered(msg.value, _url);
